@@ -8,7 +8,7 @@ const MainLayout = () => {
     return (
         <div>
 
-            <header>
+            <header className='border-b border-base-300 '>
                <Navbar></Navbar>
             </header>
 

@@ -1,6 +1,11 @@
-import React from 'react'
-import { NavLink } from 'react-router';
+import React, { useContext } from 'react'
+import { Link, NavLink, useNavigate } from 'react-router';
 import ThemeToggle from '../ThemeToggle';
+
+import Swal from 'sweetalert2';
+import profileicon from '../../assets/profile.png'
+import { AuthContext } from './../../provider/AuthProvider';
+
 
 
 
@@ -8,71 +13,137 @@ const Navbar = () => {
 
 
 
+    const { user, logoutUser, loading } = useContext(AuthContext)
+    const navigate = useNavigate()
+
+
+    console.log(user);
+
+
+
+    if (loading) {
+        return (
+            <Loading></Loading>
+        );
+    }
+
+
+    const handleLogout = () => {
+        logoutUser()
+            .then(() => {
+                Swal.fire("Success", "Logout successfully", "success");
+                navigate("/auth/login");
+            })
+            .catch((error) => {
+                Swal.fire("Error", error.message, "error");
+            });
+    }
+
+
+    const gotoDasBord = () => {
+        navigate('/dashbord')
+    }
+
+
+
+   const menu = (
+  <div className="flex flex-col md:flex-row md:gap-10 gap-3 md:items-center">
+    {[
+      { path: "/", label: "Home" },
+      { path: "/service", label: "Service" },
+      { path: "/about", label: "About" },
+      { path: "/contact", label: "Contact Us" },
+      { path: "/wishlist", label: "Wishlist" },
+    ].map(({ path, label }) => (
+      <NavLink
+        key={path}
+        to={path}
+        className={({ isActive }) =>
+          `font-semibold transition-colors duration-300 text-base-content ${
+            isActive
+              ? 'border border-success px-3 py-1 rounded-lg bg-red-200/10 backdrop-blur-sm'
+              : 'hover:text-red-400'
+          }`
+        }
+      >
+        {label}
+      </NavLink>
+    ))}
+  </div>
+);
+
+
+
+
+
+
+
+
+
+
 
     return (
-        <div>
-            <nav className="bg-white border-gray-200 dark:bg-gray-900">
-                <div className="flex flex-wrap items-center justify-between max-w-screen-2xl mx-auto p-4">
-                    <a
-                        href="#"
-                        className="flex items-center space-x-3 rtl:space-x-reverse"
-                    >
-                        <img
-                            src="https://flowbite.com/docs/images/logo.svg"
-                            className="h-8"
-                            alt="Flowbite Logo"
-                        />
-                        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                            Hanif Sikder
-                        </span>
-                    </a>
-
-                    <div className="flex items-center md:order-2 space-x-1 md:space-x-2 rtl:space-x-reverse">
-                        <ThemeToggle/>
-
-                        <a
-                            href="#"
-                            className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
-                        >
-                            Login
-                        </a>
-                        <a
-                            href="#"
-                            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                        >
-                            Sign up
-                        </a>
+        <div className="navbar  md:w-11/12 mx-auto">
+            <div className="navbar-start">
+                <div className="dropdown">
+                    <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
                     </div>
-
-                    <div
-                        id="mega-menu-icons"
-                        className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
-                    >
-                        <ul className="flex flex-col mt-4 font-medium md:flex-row md:mt-0 md:space-x-8 rtl:space-x-reverse">
-                            <NavLink
-                                to="/"
-                                className="block py-2 px-3 text-blue-600 md:hover:text-blue-600 dark:text-blue-400 dark:hover:text-white"
-                            >
-                                Home
-                            </NavLink>
-
-                            <NavLink
-                                to="/about"
-                                className="block py-2 px-3 text-blue-600 md:hover:text-blue-600 dark:text-blue-400 dark:hover:text-white"
-                            >
-                                About
-                            </NavLink>
-
-                            <NavLink
-                                to="/contact"
-                                className="block py-2 px-3 text-blue-600 md:hover:text-blue-600 dark:text-blue-400 dark:hover:text-white"
-                            >
-                                Contact
-                            </NavLink>
-                        </ul>
-                    </div>
+                    <ul
+                        tabIndex={0}
+                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                        {menu}
+                    </ul>
                 </div>
-            </nav>
+                <Link to='/' className=" text-2xl font-semibold text-emerald-700">Roommate <span className="text-orange-500">F</span>inder </Link>
+            </div>
+            <div className="navbar-center hidden lg:flex">
+                {menu}
+            </div>
+            <div className="navbar-end">
+                <ThemeToggle />
+                {user ? (
+                    <div className="space-x-2 flex items-center">
+                        <div
+                            className="tooltip tooltip-bottom"
+                            data-tip={user.displayName || 'User'}
+                        >
+                            <div onClick={gotoDasBord} className="avatar avatar-online avatar-placeholder cursor-pointer">
+                                <div className="bg-neutral text-neutral-content w-12 h-12 rounded-full overflow-hidden flex items-center justify-center">
+                                    {
+                                        <img
+                                            src={`${user ? user.photoURL : profileicon}`}
+                                            onError={(e) => {
+                                                e.target.onerror = null;
+                                                e.target.src = profileicon;
+                                            }}
+                                            className="w-full h-full object-cover"
+                                        />
+
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <Link
+                            onClick={handleLogout}
+                            to="/auth/login"
+                            className="btn bg-blue-600 text-stone-50 hover:bg-blue-800"
+                        >
+                            Logout
+                        </Link>
+                    </div>
+                ) : (
+                    <Link
+                        to="/auth/login"
+                        className="btn bg-blue-600 text-stone-50 hover:bg-blue-800"
+                    >
+                        Login
+                    </Link>
+                )}
+
+
+
+            </div>
         </div>
     );
 };

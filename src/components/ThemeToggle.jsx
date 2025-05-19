@@ -14,7 +14,7 @@ const ThemeToggle = () => {
     };
 
     return (
-        <label className="toggle theme-controller text-base-content cursor-pointer">
+        <label className="toggle theme-controller text-base-content cursor-pointer mr-2">
             <input
                 type="checkbox"
                 checked={theme === "dark"}
