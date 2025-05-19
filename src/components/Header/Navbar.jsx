@@ -1,7 +1,14 @@
-import React from 'react';
+import React from 'react'
 import { NavLink } from 'react-router';
+import ThemeToggle from '../ThemeToggle';
+
+
 
 const Navbar = () => {
+
+
+
+
     return (
         <div>
             <nav className="bg-white border-gray-200 dark:bg-gray-900">
@@ -19,7 +26,10 @@ const Navbar = () => {
                             Hanif Sikder
                         </span>
                     </a>
+
                     <div className="flex items-center md:order-2 space-x-1 md:space-x-2 rtl:space-x-reverse">
+                        <ThemeToggle/>
+
                         <a
                             href="#"
                             className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
@@ -32,44 +42,37 @@ const Navbar = () => {
                         >
                             Sign up
                         </a>
-                        
                     </div>
+
                     <div
                         id="mega-menu-icons"
                         className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
                     >
                         <ul className="flex flex-col mt-4 font-medium md:flex-row md:mt-0 md:space-x-8 rtl:space-x-reverse">
-                            
-                                <NavLink
-                                    to={'/'}
-                                    className="block py-2 px-3 text-blue-600 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 dark:text-blue-500 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
-                                    aria-current="page"
-                                >
-                                    Home
-                                </NavLink>
+                            <NavLink
+                                to="/"
+                                className="block py-2 px-3 text-blue-600 md:hover:text-blue-600 dark:text-blue-400 dark:hover:text-white"
+                            >
+                                Home
+                            </NavLink>
 
-                                <NavLink
-                                    to={'/about'}
-                                    className="block py-2 px-3 text-blue-600 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 dark:text-blue-500 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
-                                    aria-current="page"
-                                >
-                                    About
-                                </NavLink>
+                            <NavLink
+                                to="/about"
+                                className="block py-2 px-3 text-blue-600 md:hover:text-blue-600 dark:text-blue-400 dark:hover:text-white"
+                            >
+                                About
+                            </NavLink>
 
-                                <NavLink
-                                    to={'/contact'}
-                                    className="block py-2 px-3 text-blue-600 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 dark:text-blue-500 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
-                                    aria-current="page"
-                                >
-                                    Contact us
-                                </NavLink>
-                            
-                           
+                            <NavLink
+                                to="/contact"
+                                className="block py-2 px-3 text-blue-600 md:hover:text-blue-600 dark:text-blue-400 dark:hover:text-white"
+                            >
+                                Contact
+                            </NavLink>
                         </ul>
                     </div>
                 </div>
             </nav>
-
         </div>
     );
 };
