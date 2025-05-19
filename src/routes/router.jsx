@@ -6,6 +6,9 @@ import Login from './../pages/Login/Login';
 import Register from './../pages/Register/Register';
 import About from "../pages/About/About";
 import ContactUs from "../pages/Contact/ContactUs";
+import PrivateRoute from "../provider/PrivateRoute";
+import AddPost from "../pages/AddPost/AddPost";
+import MyListing from "../pages/MyListing/MyListing";
 
 
 
@@ -27,6 +30,14 @@ const router = createBrowserRouter([
                 path:'/contact',
                 Component:ContactUs
 
+            },
+            {
+                path:'/addPost',
+                Component:()=><PrivateRoute><AddPost></AddPost></PrivateRoute>
+            },
+            {
+                path:'myListing',
+                Component:()=><PrivateRoute><MyListing/></PrivateRoute>
             }
             
 

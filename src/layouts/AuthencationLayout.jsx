@@ -1,10 +1,13 @@
 import React from 'react';
 import { Outlet } from 'react-router';
+import Navbar from '../components/Header/Navbar';
 
 const AuthencationLayout = () => {
     return (
         <div>
-            Authencation Layout
+            <header>
+                <Navbar></Navbar>
+            </header>
             <Outlet></Outlet>
         </div>
     );

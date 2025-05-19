@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router';
 import ThemeToggle from '../ThemeToggle';
-
 import Swal from 'sweetalert2';
 import profileicon from '../../assets/profile.png'
 import { AuthContext } from './../../provider/AuthProvider';
+import Loading from './../Loading/Loading';
 
 
 
@@ -15,9 +15,6 @@ const Navbar = () => {
 
     const { user, logoutUser, loading } = useContext(AuthContext)
     const navigate = useNavigate()
-
-
-    console.log(user);
 
 
 
@@ -50,10 +47,10 @@ const Navbar = () => {
   <div className="flex flex-col md:flex-row md:gap-10 gap-3 md:items-center">
     {[
       { path: "/", label: "Home" },
-      { path: "/service", label: "Service" },
-      { path: "/about", label: "About" },
-      { path: "/contact", label: "Contact Us" },
-      { path: "/wishlist", label: "Wishlist" },
+      { path: "/addPost", label: "Add to Find Roommate" },
+      { path: "/wishlistf", label: "Browse Listing" },
+      { path: "/myListing", label: "My Listing" },
+      
     ].map(({ path, label }) => (
       <NavLink
         key={path}
@@ -95,7 +92,7 @@ const Navbar = () => {
                         {menu}
                     </ul>
                 </div>
-                <Link to='/' className=" text-2xl font-semibold text-emerald-700">Roommate <span className="text-orange-500">F</span>inder </Link>
+                <Link to='/' className=" text-2xl font-semibold text-violet-500">Roommate <span className="text-orange-500">F</span>inder </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 {menu}
