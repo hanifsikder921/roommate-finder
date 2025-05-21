@@ -9,6 +9,8 @@ import ContactUs from "../pages/Contact/ContactUs";
 import PrivateRoute from "../provider/PrivateRoute";
 import AddPost from "../pages/AddPost/AddPost";
 import MyListing from "../pages/MyListing/MyListing";
+import BrowsListing from "../pages/BrowsListing/BrowsListing";
+import PostDetails from "../pages/Details/PostDetails";
 
 
 
@@ -18,43 +20,52 @@ const router = createBrowserRouter([
         Component: MainLayout,
         children: [
             {
-                index:true,
+                index: true,
                 Component: Home,
             },
             {
-                path:'/about',
-                Component:About
+                path: '/about',
+                Component: About
 
             },
             {
-                path:'/contact',
-                Component:ContactUs
+                path: '/contact',
+                Component: ContactUs
 
             },
             {
-                path:'/addPost',
-                Component:()=><PrivateRoute><AddPost></AddPost></PrivateRoute>
+                path: 'details/:id',
+                loader: ({ params }) => fetch(`http://localhost:3000/items/${params.id}`),
+                Component: () => <PrivateRoute><PostDetails /></PrivateRoute>
             },
             {
-                path:'myListing',
-                Component:()=><PrivateRoute><MyListing/></PrivateRoute>
+                path: '/addPost',
+                Component: () => <PrivateRoute><AddPost></AddPost></PrivateRoute>
+            },
+            {
+                path: 'browsePost',
+                Component: BrowsListing
+            },
+            {
+                path: 'myListing',
+                Component: () => <PrivateRoute><MyListing /></PrivateRoute>
             }
-            
+
 
         ]
     },
 
     {
-        path:"/auth",
-        Component:AuthencationLayout,
-        children:[
+        path: "/auth",
+        Component: AuthencationLayout,
+        children: [
             {
-                path:"/auth/login",
-                Component:Login
+                path: "/auth/login",
+                Component: Login
             },
             {
-                path:"/auth/register",
-                Component:Register
+                path: "/auth/register",
+                Component: Register
             }
         ]
     }

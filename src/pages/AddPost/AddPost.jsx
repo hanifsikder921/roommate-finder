@@ -1,22 +1,54 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../provider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const AddPost = () => {
 
     const { user } = useContext(AuthContext);
     console.log(user);
-    
-    
-    
+
+
+
     const handleAddPost = (e) => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
         const newPost = Object.fromEntries(formData.entries());
-        newPost.uid=user.uid;
+        newPost.uid = user.uid;
         console.log(newPost);
 
-    }
+
+        fetch('http://localhost:3000/items', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newPost)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    Swal.fire({
+                        position: "top",
+                        icon: "success",
+                        title: "Post Added Successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    form.reset(); // optional: clear form after success
+                }
+                else {
+                    Swal.fire({
+                        position: "top",
+                        icon: "error",
+                        title: "Post Added Field...!!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            });
+    };
+
 
     return (
         <div className='md:max-w-6xl mx-auto md:my-8'>
@@ -54,10 +86,10 @@ const AddPost = () => {
 
 
                             <label className="label">User Name</label>
-                            <input name='userName' type="text" className="input w-full focus:border-none mb-2 focus:outline-1" value={user.displayName} readOnly  />
+                            <input name='userName' type="text" className="input w-full focus:border-none mb-2 focus:outline-1" value={user.displayName} readOnly />
 
                             <label className="label">Email</label>
-                            <input name='userEmail' type="email" className="input w-full focus:border-none mb-2 focus:outline-1" value={user.email} readOnly  />
+                            <input name='userEmail' type="email" className="input w-full focus:border-none mb-2 focus:outline-1" value={user.email} readOnly />
 
                             <label className="label">Availability </label>
 

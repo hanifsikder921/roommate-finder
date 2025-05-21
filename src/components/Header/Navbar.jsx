@@ -44,7 +44,7 @@ const Navbar = () => {
             {[
                 { path: "/", label: "Home" },
                 { path: "/addPost", label: "Add to Find Roommate" },
-                { path: "/wishlistf", label: "Browse Listing" },
+                { path: "/browsePost", label: "Browse Listing" },
                 { path: "/myListing", label: "My Listing" },
             ].map(({ path, label }) => (
                 <NavLink
