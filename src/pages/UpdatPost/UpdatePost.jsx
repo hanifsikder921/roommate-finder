@@ -1,72 +1,80 @@
 import React, { useContext } from 'react';
-import { AuthContext } from '../../provider/AuthProvider';
+import { useLoaderData } from 'react-router';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../provider/AuthProvider';
 
-const AddPost = () => {
-
+const UpdatePost = () => {
     const { user } = useContext(AuthContext);
-    console.log(user);
 
 
 
-    const handleAddPost = (e) => {
+    const { _id, title, location, type, lifestyle, userName, userEmail, availability, amount, contactInfo, description, uid } = useLoaderData();
+
+
+
+    const handleUpdate = (e) => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
-        const newPost = Object.fromEntries(formData.entries());
-        newPost.uid = user.uid;
-        console.log(newPost);
+        const updatePost = Object.fromEntries(formData.entries())
+
+        //send Update post to db
+
+        fetch(`http://localhost:3000/items/${_id}`, {
 
 
-        fetch('http://localhost:3000/items', {
-            method: 'POST',
+            method: "PUT",
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(newPost)
+            body: JSON.stringify(updatePost)
         })
+
             .then(res => res.json())
-            .then(data => {
-                if (data.insertedId) {
+            .then((data) => {
+                if (data.modifiedCount) {
                     Swal.fire({
-                        position: "top",
+                        position: "top-end",
                         icon: "success",
-                        title: "Post Added Successfully",
+                        title: ` Update`,
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    form.reset(); // optional: clear form after success
                 }
                 else {
                     Swal.fire({
-                        position: "top",
-                        icon: "error",
-                        title: "Post Added Field...!!",
+                        position: "top-end",
+                        icon: "success",
+                        title: ` NO Data Change Yet`,
                         showConfirmButton: false,
                         timer: 1500
                     });
                 }
-            });
-    };
+
+            })
+
+
+    }
+
 
 
     return (
         <div className='md:max-w-6xl mx-auto md:my-8'>
 
-            <form onSubmit={handleAddPost}>
+            <form onSubmit={handleUpdate}>
                 <div className='bg-base-200 p-2 md:p-8 rounded-md shadow'>
 
                     <div className='grid grid-cols-1 md:grid-cols-2 md:gap-8'>
 
 
-                        <fieldset className="fieldset   rounded-box  ">
+                        <fieldset className="fieldset rounded-box  ">
 
 
                             <label className="label">Title</label>
-                            <input required name='title' type="text" className="input w-full focus:border-none mb-2 focus:outline-1" placeholder="Your Title" />
+                            <input required defaultValue={title} name='title' type="text" className="input w-full focus:border-none mb-2 focus:outline-1" placeholder="Your Title" />
 
                             <label className="label">Location</label>
-                            <input required name='location' type="text" className="input w-full focus:border-none mb-2 focus:outline-1" placeholder="Enter Your Location" />
+                            <input required defaultValue={location} name='location' type="text" className="input w-full focus:border-none mb-2 focus:outline-1" placeholder="Enter Your Location" />
 
                             <label className="label">Room Type</label>
                             <select name='type' defaultValue="Single" className="select w-full focus:border-none mb-2 focus:outline-1">
@@ -78,7 +86,7 @@ const AddPost = () => {
                             </select>
 
                             <label className="label">Lifestyle Preferences</label>
-                            <input required name='lifestyle' type="text" className="input w-full focus:border-none mb-2 focus:outline-1" placeholder="Your Lifestyle Preferences" />
+                            <input required defaultValue={lifestyle} name='lifestyle' type="text" className="input w-full focus:border-none mb-2 focus:outline-1" placeholder="Your Lifestyle Preferences" />
 
                         </fieldset>
 
@@ -86,34 +94,34 @@ const AddPost = () => {
 
 
                             <label className="label">User Name</label>
-                            <input required name='userName' type="text" className="input w-full focus:border-none mb-2 focus:outline-1" value={user.displayName} readOnly />
+                            <input required  name='userName' type="text" className="input w-full focus:border-none mb-2 focus:outline-1" value={user.displayName} readOnly />
 
                             <label className="label">Email</label>
                             <input required name='userEmail' type="email" className="input w-full focus:border-none mb-2 focus:outline-1" value={user.email} readOnly />
 
                             <label className="label">Availability </label>
 
-                            <select name='availability' defaultValue="available" className="select w-full focus:border-none mb-2 focus:outline-1">
+                            <select name='availability' defaultValue={availability} className="select w-full focus:border-none mb-2 focus:outline-1">
                                 <option disabled value="">Set Availability</option>
                                 <option value="available">Available</option>
                                 <option value="unavailable">Unavailable</option>
                             </select>
 
                             <label className="label">Rent Amount</label>
-                            <input required name='amount' type="number" className="input w-full focus:border-none mb-2 focus:outline-1" placeholder="Amount" />
+                            <input required defaultValue={amount} name='amount' type="number" className="input w-full focus:border-none mb-2 focus:outline-1" placeholder="Amount" />
 
                         </fieldset>
 
 
                     </div>
 
-                    <div className=''>
+                    <div>
                         <label className="label">Contact</label>
-                        <input required name='contactInfo' type="text" className="input w-full focus:border-none mb-2 focus:outline-1" placeholder=" Enter Your Contact info " />
+                        <input required defaultValue={contactInfo} name='contactInfo' type="text" className="input w-full focus:border-none mb-2 focus:outline-1" placeholder=" Enter Your Contact info " />
 
                         <fieldset className="fieldset">
                             <legend className="fieldset-legend">Description</legend>
-                            <textarea name='description' className="textarea h-24 w-auto focus:border-none focus:outline-1" placeholder="Enter Your Description"></textarea>
+                            <textarea required defaultValue={description} name='description' className="textarea h-24 w-auto focus:border-none focus:outline-1" placeholder="Enter Your Description"></textarea>
                         </fieldset>
                     </div>
 
@@ -129,4 +137,4 @@ const AddPost = () => {
     );
 };
 
-export default AddPost;
+export default UpdatePost;

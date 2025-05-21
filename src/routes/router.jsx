@@ -11,6 +11,8 @@ import AddPost from "../pages/AddPost/AddPost";
 import MyListing from "../pages/MyListing/MyListing";
 import BrowsListing from "../pages/BrowsListing/BrowsListing";
 import PostDetails from "../pages/Details/PostDetails";
+import UpdatePost from "../pages/UpdatPost/UpdatePost";
+
 
 
 
@@ -34,7 +36,7 @@ const router = createBrowserRouter([
 
             },
             {
-                path: 'details/:id',
+                path: '/details/:id',
                 loader: ({ params }) => fetch(`http://localhost:3000/items/${params.id}`),
                 Component: () => <PrivateRoute><PostDetails /></PrivateRoute>
             },
@@ -43,12 +45,17 @@ const router = createBrowserRouter([
                 Component: () => <PrivateRoute><AddPost></AddPost></PrivateRoute>
             },
             {
-                path: 'browsePost',
+                path: '/browsePost',
                 Component: BrowsListing
             },
             {
-                path: 'myListing',
-                loader:()=>fetch('http://localhost:3000/items'),
+                path: '/update/:id',
+                loader: ({ params }) => fetch(`http://localhost:3000/items/${params.id}`),
+                Component: () => <PrivateRoute><UpdatePost/></PrivateRoute>
+            },
+            {
+                path: '/myListing',
+                loader: () => fetch('http://localhost:3000/items'),
                 Component: () => <PrivateRoute><MyListing /></PrivateRoute>
             }
 

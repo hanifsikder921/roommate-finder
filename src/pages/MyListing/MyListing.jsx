@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { useLoaderData } from 'react-router';
+import { Link, useLoaderData } from 'react-router';
 import { AuthContext } from '../../provider/AuthProvider';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
@@ -84,9 +84,9 @@ const MyListing = () => {
                                             </span>
                                         </td>
                                         <td className="space-x-2 text-center">
-                                            <button className="btn btn-sm btn-warning text-white">
+                                            <Link to={`/update/${post._id}`} className="btn btn-sm btn-warning text-white">
                                                 <FaEdit /> Update
-                                            </button>
+                                            </Link>
                                             <button onClick={()=>handleDelete(post._id)} className="btn btn-sm btn-error text-white">
                                                 <FaTrash /> Delete
                                             </button>
@@ -111,9 +111,9 @@ const MyListing = () => {
                                     </span>
                                 </p>
                                 <div className="flex justify-center mt-3 gap-2">
-                                    <button className="btn btn-sm btn-warning text-white">
+                                    <Link className="btn btn-sm btn-warning text-white">
                                         <FaEdit /> Update
-                                    </button>
+                                    </Link>
                                     <button onClick={()=>handleDelete(post._id)} className="btn btn-sm btn-error text-white">
                                         <FaTrash /> Delete
                                     </button>
