@@ -48,6 +48,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'myListing',
+                loader:()=>fetch('http://localhost:3000/items'),
                 Component: () => <PrivateRoute><MyListing /></PrivateRoute>
             }
 
