@@ -1,15 +1,14 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router';
 
 const Error = () => {
     return (
         <div>
-            <Helmet><title>Error- SubNest</title></Helmet>
-            <main className="grid min-h-screen place-items-center bg-white dark:bg-[#0f0f1a] px-6 py-24 sm:py-32 lg:px-8">
+           
+            <main className="grid min-h-screen place-items-center px-6 py-24 sm:py-32 lg:px-8">
                 <div className="text-center">
-                    <p className="text-base font-semibold text-indigo-600 dark:text-indigo-400">404</p>
-                    <h1 className="mt-4 text-5xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+                    <p className="text-base font-semibold">404</p>
+                    <h1 className="mt-4 text-5xl font-bold tracking-tight  sm:text-6xl">
                         Page Not Found
                     </h1>
                     <p className="mt-6 text-lg text-gray-600 dark:text-gray-400">

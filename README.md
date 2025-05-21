@@ -1,12 +1,71 @@
-# React + Vite
+# 🏠 Roommate Finder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Roommate Finder is a modern web application that helps users discover, connect, and live with trusted roommates. Built using React and Vite, it offers a sleek UI, responsive design, and secure authentication powered by Firebase.
 
-Currently, two official plugins are available:
+🌐 **Live Site URL:**  
+👉 [https://roommate-finder-b1db3.web.app/](https://roommate-finder-b1db3.web.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🔍 **Verified Listings** — Discover trustworthy roommate listings with ease.
+- 💬 **Secure Chat System** — Contact other users securely through built-in messaging.
+- 🌓 **Dark & Light Mode** — Toggle between themes with persistent user preferences.
+- 📱 **Mobile-Friendly UI** — Fully responsive layout across all devices.
+- ✅ **Authentication System** — Sign up and sign in with Firebase Authentication.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** React 19 + Vite
+- **Styling:** Tailwind CSS 4 + DaisyUI 5
+- **Routing:** React Router 7
+- **Icons:** React Icons
+- **Slider:** react-slick + slick-carousel
+- **UI Enhancements:** SweetAlert2, react-spinners
+- **Authentication & Hosting:** Firebase
+- **Environment Config:** dotenv
+
+---
+
+## 📁 Folder Structure
+
+src/
+├── assets/ # Static images and icons
+├── components/ # Reusable UI components
+├── pages/ # Route-based pages
+├── routes/ # Protected & public routes
+├── hooks/ # Custom React hooks
+└── App.jsx # Main app setup
+
+
+
+---
+
+## 📦 Setup Instructions
+
+1. **Clone this repository**
+2. `npm install` — Install dependencies
+3. Create `.env` file with Firebase config
+4. `npm run dev` — Start development server
+5. `npm run build` — Build for production
+
+---
+
+## 👤 Author
+
+**Hanif Sikder**  
+Frontend Developer | Firebase Enthusiast  
+🛠️ Building smart, minimal web apps with React + Tailwind
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**.  
+Feel free to use and contribute!
+
+
+

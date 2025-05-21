@@ -14,6 +14,7 @@ import PostDetails from "../pages/Details/PostDetails";
 import UpdatePost from "../pages/UpdatPost/UpdatePost";
 import PrivacyPolicy from './../pages/Privacy/PrivacyPolicy';
 import Terms from "../pages/TermsAnd Condition/Terms";
+import Error from "../pages/NotFound/Error";
 
 
 
@@ -90,7 +91,14 @@ const router = createBrowserRouter([
                 Component: Register
             }
         ]
+    },
+    {
+
+        path: "*",
+        Component: Error,
+
     }
+
 
 ])
 
