@@ -8,7 +8,7 @@ const UpdatePost = () => {
 
 
 
-    const { _id, title, location, type, lifestyle, userName, userEmail, availability, amount, contactInfo, description, uid } = useLoaderData();
+    const { _id, title, location, lifestyle,  availability, amount, contactInfo, description, } = useLoaderData();
 
 
 

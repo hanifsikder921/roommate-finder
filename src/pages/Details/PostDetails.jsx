@@ -3,16 +3,14 @@ import { useLoaderData, useNavigate } from 'react-router';
 import { AuthContext } from '../../provider/AuthProvider';
 import { FaMapMarkerAlt, FaHome, FaDollarSign, FaUser, FaEnvelope, FaPhone, FaAlignLeft, FaHeart } from 'react-icons/fa';
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
-
 import { MdOutlineEventAvailable } from "react-icons/md";
-
 import { FcViewDetails } from "react-icons/fc";
 import Swal from 'sweetalert2';
 import { useEffect } from 'react';
 import Loading from '../../components/Loading/Loading';
 
 const PostDetails = () => {
-    const post = useLoaderData(); // full post data
+    const post = useLoaderData(); 
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 

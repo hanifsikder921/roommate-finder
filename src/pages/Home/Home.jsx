@@ -1,10 +1,20 @@
 import React from 'react';
+import BannerSlider from '../../components/Slider/BannerSlider';
 
 const Home = () => {
     return (
-        <div className='flex items-center justify-center h-[calc(100vh-200px)]'>
+        <div className='md:w-11/12 mx-auto my-8'>
+            <BannerSlider></BannerSlider>
 
-            <span className='text-emerald-500 font-bold text-5xl rounded-2xl border p-4 border-white '>Home Page</span>
+            <section className='md:my-20'>
+                <h2 className='text-base-500 text-center text-3xl text-purple-500 font-bold '><span className='divider  '>Available Rooms</span></h2>
+                <div>
+
+                    
+                </div>
+                
+            </section>
+
 
         </div>
     );

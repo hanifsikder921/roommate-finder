@@ -14,8 +14,7 @@ const AddPost = () => {
         const form = e.target;
         const formData = new FormData(form);
         const newPost = Object.fromEntries(formData.entries());
-        newPost.uid = user.uid;
-        console.log(newPost);
+       
 
 
         fetch('http://localhost:3000/items', {
