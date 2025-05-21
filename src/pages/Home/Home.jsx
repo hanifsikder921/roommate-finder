@@ -3,6 +3,7 @@ import BannerSlider from '../../components/Slider/BannerSlider';
 import { useLoaderData } from 'react-router';
 import PostCard from '../../components/PostCard/PostCard';
 import WhyChooseUs from '../../components/ExtraSection/WhyChooseUs';
+import HowItWorks from '../../components/ExtraSection/HowItWorks';
 
 
 const Home = () => {
@@ -25,8 +26,12 @@ const Home = () => {
                 </div>
             </section>
 
+            <section className='bg-base-300 mb-16  rounded-lg shadow'>
+                <HowItWorks></HowItWorks>
+            </section>
 
-            <section className='bg-base-300'>
+
+            <section className='bg-base-300 mb-16  rounded-lg shadow'>
                 <WhyChooseUs/>
             </section>
 
