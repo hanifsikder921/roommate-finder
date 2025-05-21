@@ -12,6 +12,8 @@ import MyListing from "../pages/MyListing/MyListing";
 import BrowsListing from "../pages/BrowsListing/BrowsListing";
 import PostDetails from "../pages/Details/PostDetails";
 import UpdatePost from "../pages/UpdatPost/UpdatePost";
+import PrivacyPolicy from './../pages/Privacy/PrivacyPolicy';
+import Terms from "../pages/TermsAnd Condition/Terms";
 
 
 
@@ -23,7 +25,7 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                loader:()=>fetch('http://localhost:3000/items'),
+                loader: () => fetch('http://localhost:3000/items'),
                 Component: Home,
             },
             {
@@ -52,13 +54,24 @@ const router = createBrowserRouter([
             {
                 path: '/update/:id',
                 loader: ({ params }) => fetch(`http://localhost:3000/items/${params.id}`),
-                Component: () => <PrivateRoute><UpdatePost/></PrivateRoute>
+                Component: () => <PrivateRoute><UpdatePost /></PrivateRoute>
             },
             {
                 path: '/myListing',
                 loader: () => fetch('http://localhost:3000/items'),
                 Component: () => <PrivateRoute><MyListing /></PrivateRoute>
+            },
+            {
+                path: '/privacy',
+                Component: PrivacyPolicy
+            },
+            {
+
+                path: "/terms",
+                element: <Terms />
             }
+
+
 
 
         ]
