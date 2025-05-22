@@ -13,8 +13,10 @@ const AddPost = () => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
-        const newPost = Object.fromEntries(formData.entries());
-
+        const newPost = {
+            ...Object.fromEntries(formData.entries()),
+            likes: []
+        };
 
 
         fetch('https://roommate-finder-server-site.vercel.app/items', {
@@ -34,19 +36,19 @@ const AddPost = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    form.reset(); // optional: clear form after success
-                }
-                else {
+                    form.reset();
+                } else {
                     Swal.fire({
                         position: "top",
                         icon: "error",
-                        title: "Post Added Field...!!",
+                        title: "Post Add Failed...!!",
                         showConfirmButton: false,
                         timer: 1500
                     });
                 }
             });
     };
+
 
 
     return (
@@ -72,6 +74,11 @@ const AddPost = () => {
                                 <option disabled value="">Select Type</option>
                                 <option value="Single">Single</option>
                                 <option value="Shared">Shared</option>
+                                <option value="Master Bedroom">Master Bedroom</option>
+                                <option value="Studio">Studio</option>
+                                <option value="Sublet">Sublet</option>
+                                <option value="Paying Guest (PG)">Paying Guest (PG)</option>
+
 
 
                             </select>
