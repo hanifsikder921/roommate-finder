@@ -129,7 +129,7 @@ const MyListing = () => {
                                 </p>
                                 <div className="flex justify-center mt-3 gap-2">
                                     <Link to={`/update/${post._id}`} className="btn btn-sm btn-warning ">
-                                        <FaEdit /> Update
+                                        <FaEdit /> Edit
                                     </Link>
                                     <button onClick={() => handleDelete(post._id)} className="btn btn-sm btn-error ">
                                         <FaTrash /> Delete

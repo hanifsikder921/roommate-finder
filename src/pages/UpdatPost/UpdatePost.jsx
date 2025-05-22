@@ -129,7 +129,7 @@ const UpdatePost = () => {
                         </fieldset>
                     </div>
 
-                    <button type='submit' className='btn btn-primary w-full mt-4'>Add Listing</button>
+                    <button type='submit' className='btn btn-primary w-full mt-4'>Update</button>
 
                 </div>
 
