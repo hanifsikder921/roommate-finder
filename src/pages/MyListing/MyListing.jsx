@@ -51,12 +51,11 @@ const MyListing = () => {
         });
     };
 
-    
+
     if (loading) {
         return (
             <div className="flex justify-center items-center h-screen">
                 <span className="loading loading-spinner text-primary text-2xl"></span>
-
             </div>
         );
     }
@@ -102,7 +101,7 @@ const MyListing = () => {
                                         </td>
                                         <td className="space-x-2 text-center">
                                             <Link to={`/update/${post._id}`} className="btn btn-sm btn-warning ">
-                                                <FaEdit /> Update
+                                                <FaEdit /> Edit
                                             </Link>
                                             <button onClick={() => handleDelete(post._id)} className="btn btn-sm btn-error ">
                                                 <FaTrash /> Delete
@@ -122,7 +121,7 @@ const MyListing = () => {
                                 <p><span className="font-semibold">Location:</span> {post.location}</p>
                                 <p><span className="font-semibold">Amount:</span> ${post.amount}</p>
                                 <p>
-                                    <span className="font-semibold">Availability:</span>{' '}
+                                    <span className="font-semibold">Availability:</span>
                                     <span className={`badge ${post.availability === 'available' ? 'badge-success' : 'badge-error'} `}>
                                         {post.availability}
                                     </span>
