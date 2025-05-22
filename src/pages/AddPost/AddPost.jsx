@@ -119,7 +119,7 @@ const AddPost = () => {
 
                     <div className=''>
                         <label className="label">Contact</label>
-                        <input required name='contactInfo' type="text" className="input w-full focus:border-none mb-2 focus:outline-1" placeholder=" Enter Your Contact info " />
+                        <input required name='contactInfo' type="number" className="input w-full focus:border-none mb-2 focus:outline-1" placeholder=" Enter Your Contact info " />
 
                         <fieldset className="fieldset">
                             <legend className="fieldset-legend">Description</legend>
