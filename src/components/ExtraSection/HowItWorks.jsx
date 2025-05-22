@@ -35,15 +35,16 @@ const HowItWorks = () => {
 
         <div className="flex flex-col md:flex-row items-center justify-center gap-8 flex-wrap cursor-pointer">
           {steps.map((step, index) => (
-            <div key={index} className="flex flex-col md:flex-row items-center gap-4 justify-around">
-              
-              <div className="p-6 rounded-2xl shadow-md shadow-purple-400  hover:shadow-md hover:shadow-amber-200 transition text-center">
+            <div
+              key={index}
+              className="flex flex-col md:flex-row items-center gap-4 justify-around w-full md:w-auto"
+            >
+              <div className="w-full max-w-xs p-6 rounded-2xl shadow-md shadow-purple-400 hover:shadow-md hover:shadow-amber-200 transition text-center">
                 <div className="mb-3 flex justify-center">{step.icon}</div>
                 <h3 className="text-xl font-semibold mb-1">{step.title}</h3>
-                <p className="text-sm ">{step.description}</p>
+                <p className="text-sm">{step.description}</p>
               </div>
 
-        
               {index !== steps.length - 1 && (
                 <>
                   <BsArrowDown className="text-2xl text-primary block md:hidden" />
@@ -52,6 +53,7 @@ const HowItWorks = () => {
               )}
             </div>
           ))}
+
         </div>
       </div>
     </section>

@@ -1,15 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import PostCard from '../../components/PostCard/PostCard';
 
-
 const BrowsListing = () => {
     const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(true); 
 
     useEffect(() => {
-        fetch('http://localhost:3000/items')
+        fetch('https://roommate-finder-server-site.vercel.app/items')
             .then(res => res.json())
-            .then(data => setPosts(data));
+            .then(data => {
+                setPosts(data);
+                setLoading(false); 
+            })
+            .catch(error => {
+                console.error("Error loading posts:", error);
+                setLoading(false); 
+            });
     }, []);
+
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <span className="loading loading-spinner text-primary text-2xl"></span>
+            </div>
+        );
+    }
 
     return (
         <div className="max-w-6xl mx-auto px-4 py-8">

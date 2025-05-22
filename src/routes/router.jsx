@@ -13,8 +13,9 @@ import BrowsListing from "../pages/BrowsListing/BrowsListing";
 import PostDetails from "../pages/Details/PostDetails";
 import UpdatePost from "../pages/UpdatPost/UpdatePost";
 import PrivacyPolicy from './../pages/Privacy/PrivacyPolicy';
-import Terms from "../pages/TermsAnd Condition/Terms";
 import Error from "../pages/NotFound/Error";
+import Terms from './../pages/TermsAnd Condition/Terms';
+
 
 
 
@@ -25,28 +26,44 @@ const router = createBrowserRouter([
         Component: MainLayout,
         children: [
             {
-                index: true,
-                loader: () => fetch('http://localhost:3000/items'),
-                Component: Home,
+                path: "/",
+                element: <Home />,
+                loader: async () => {
+                    try {
+                        const res = await fetch("https://roommate-finder-server-site.vercel.app/items");
+                        if (!res.ok) throw new Error("Failed to load data");
+                        return res.json();
+                    } catch (err) {
+                        console.error(err.message);
+                        return [];
+                    }
+                },
             },
             {
                 path: '/about',
                 Component: About
-
             },
             {
                 path: '/contact',
                 Component: ContactUs
-
             },
             {
                 path: '/details/:id',
-                loader: ({ params }) => fetch(`http://localhost:3000/items/${params.id}`),
+                loader: async ({ params }) => {
+                    try {
+                        const res = await fetch(`https://roommate-finder-server-site.vercel.app/items/${params.id}`);
+                        if (!res.ok) throw new Error("Failed to load post details");
+                        return res.json();
+                    } catch (err) {
+                        console.error(err.message);
+                        return null; // বা fallback ডেটা
+                    }
+                },
                 Component: () => <PrivateRoute><PostDetails /></PrivateRoute>
             },
             {
                 path: '/addPost',
-                Component: () => <PrivateRoute><AddPost></AddPost></PrivateRoute>
+                Component: () => <PrivateRoute><AddPost /></PrivateRoute>
             },
             {
                 path: '/browsePost',
@@ -54,12 +71,30 @@ const router = createBrowserRouter([
             },
             {
                 path: '/update/:id',
-                loader: ({ params }) => fetch(`http://localhost:3000/items/${params.id}`),
+                loader: async ({ params }) => {
+                    try {
+                        const res = await fetch(`https://roommate-finder-server-site.vercel.app/items/${params.id}`);
+                        if (!res.ok) throw new Error("Failed to load update data");
+                        return res.json();
+                    } catch (err) {
+                        console.error(err.message);
+                        return null;
+                    }
+                },
                 Component: () => <PrivateRoute><UpdatePost /></PrivateRoute>
             },
             {
                 path: '/myListing',
-                loader: () => fetch('http://localhost:3000/items'),
+                loader: async () => {
+                    try {
+                        const res = await fetch('https://roommate-finder-server-site.vercel.app/items');
+                        if (!res.ok) throw new Error("Failed to load my listings");
+                        return res.json();
+                    } catch (err) {
+                        console.error(err.message);
+                        return [];
+                    }
+                },
                 Component: () => <PrivateRoute><MyListing /></PrivateRoute>
             },
             {
@@ -67,17 +102,11 @@ const router = createBrowserRouter([
                 Component: PrivacyPolicy
             },
             {
-
                 path: "/terms",
-                element: <Terms />
+                Component: Terms
             }
-
-
-
-
         ]
     },
-
     {
         path: "/auth",
         Component: AuthencationLayout,
@@ -93,15 +122,13 @@ const router = createBrowserRouter([
         ]
     },
     {
-
         path: "*",
         Component: Error,
-
     }
-
-
-])
+]);
 
 
 
 export default router;
+
+// https://roommate-finder-server-site.vercel.app/items

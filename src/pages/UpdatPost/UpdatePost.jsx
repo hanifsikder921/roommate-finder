@@ -8,7 +8,7 @@ const UpdatePost = () => {
 
 
 
-    const { _id, title, location, lifestyle,  availability, amount, contactInfo, description, } = useLoaderData();
+    const { _id, title, location, lifestyle, availability, amount, contactInfo, description, } = useLoaderData();
 
 
 
@@ -20,7 +20,7 @@ const UpdatePost = () => {
 
         //send Update post to db
 
-        fetch(`http://localhost:3000/items/${_id}`, {
+        fetch(`https://roommate-finder-server-site.vercel.app/items/${_id}`, {
 
 
             method: "PUT",
@@ -94,7 +94,7 @@ const UpdatePost = () => {
 
 
                             <label className="label">User Name</label>
-                            <input required  name='userName' type="text" className="input w-full focus:border-none mb-2 focus:outline-1" value={user.displayName} readOnly />
+                            <input required name='userName' type="text" className="input w-full focus:border-none mb-2 focus:outline-1" value={user.displayName} readOnly />
 
                             <label className="label">Email</label>
                             <input required name='userEmail' type="email" className="input w-full focus:border-none mb-2 focus:outline-1" value={user.email} readOnly />

@@ -14,10 +14,10 @@ const AddPost = () => {
         const form = e.target;
         const formData = new FormData(form);
         const newPost = Object.fromEntries(formData.entries());
-       
 
 
-        fetch('http://localhost:3000/items', {
+
+        fetch('https://roommate-finder-server-site.vercel.app/items', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

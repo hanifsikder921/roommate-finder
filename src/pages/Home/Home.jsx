@@ -1,21 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import BannerSlider from '../../components/Slider/BannerSlider';
 import { useLoaderData } from 'react-router';
 import PostCard from '../../components/PostCard/PostCard';
 import WhyChooseUs from '../../components/ExtraSection/WhyChooseUs';
 import HowItWorks from '../../components/ExtraSection/HowItWorks';
 
-
 const Home = () => {
     const allData = useLoaderData();
-    const availablePosts = allData.filter(post => post.availability === 'available').slice(0, 6);
+    const [loading, setLoading] = useState(true); // ✅ লোডিং স্টেট
+    const [availablePosts, setAvailablePosts] = useState([]);
+
+    useEffect(() => {
+        if (allData) {
+            const filtered = allData.filter(post => post.availability === 'available').slice(0, 6);
+            setAvailablePosts(filtered);
+            setLoading(false);
+        }
+    }, [allData]);
+
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <span className="loading loading-spinner text-purple-500 text-2xl"></span>
+            </div>
+        );
+    }
 
     return (
-        <div className='md:w-11/12 mx-auto my-8'>
+        <div className='w-11/12 mx-auto my-8'>
             <BannerSlider />
 
             <section className='md:my-20'>
-                <h2 className='text-base-500 text-center text-3xl text-purple-500 font-bold '>
+                <h2 className='text-base-500 text-center text-3xl text-purple-500 font-bold'>
                     <span className='divider'>Available Rooms</span>
                 </h2>
 
@@ -26,16 +42,13 @@ const Home = () => {
                 </div>
             </section>
 
-            <section className='bg-base-300 mb-16  rounded-lg shadow'>
-                <HowItWorks></HowItWorks>
+            <section className='bg-base-300 my-16 rounded-lg shadow'>
+                <HowItWorks />
             </section>
 
-
-            <section className='bg-base-300 mb-16  rounded-lg shadow'>
-                <WhyChooseUs/>
+            <section className='bg-base-300 mb-16 rounded-lg shadow'>
+                <WhyChooseUs />
             </section>
-
-
         </div>
     );
 };

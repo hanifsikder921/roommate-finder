@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link, useLoaderData } from 'react-router';
 import { AuthContext } from '../../provider/AuthProvider';
 import { FaEdit, FaTrash } from 'react-icons/fa';
@@ -7,11 +7,17 @@ import Swal from 'sweetalert2';
 const MyListing = () => {
     const { user } = useContext(AuthContext);
     const allPost = useLoaderData();
-    const myPosts = allPost.filter(post => post.userEmail === user?.email);
-    const [posts,setPost]=useState(myPosts);
 
+    const [posts, setPost] = useState([]);
+    const [loading, setLoading] = useState(true); 
 
-
+    useEffect(() => {
+        if (allPost && user?.email) {
+            const myPosts = allPost.filter(post => post.userEmail === user.email);
+            setPost(myPosts);
+            setLoading(false);
+        }
+    }, [allPost, user]);
 
     const handleDelete = (_id) => {
         Swal.fire({
@@ -24,7 +30,7 @@ const MyListing = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/items/${_id}`, {
+                fetch(`https://roommate-finder-server-site.vercel.app/items/${_id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())
@@ -32,27 +38,33 @@ const MyListing = () => {
                         if (data.deletedCount > 0) {
                             Swal.fire({
                                 title: "Deleted!",
-                                text: "User has been deleted.",
+                                text: "Listing has been deleted.",
                                 icon: "success",
-                                timer:1500,
+                                timer: 1500,
                             });
-                            const reminingPost = posts.filter(post => post._id !== _id)
-                            setPost(reminingPost)
+                            const remainingPost = posts.filter(post => post._id !== _id);
+                            setPost(remainingPost);
                         }
                     });
             }
         });
     };
 
-
-
-
+    // ✅ লোডিং স্পিনার দেখাও
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <span className="loading loading-spinner text-primary text-2xl"></span>
+               
+            </div>
+        );
+    }
 
     return (
         <div className="max-w-6xl mx-auto px-4 py-8 ">
             <h2 className="text-3xl font-bold mb-6 text-center text-primary">My Listings</h2>
 
-            {myPosts.length === 0 ? (
+            {posts.length === 0 ? (
                 <p className="text-center text-gray-500">You have not added any posts yet.</p>
             ) : (
                 <div className="overflow-x-auto">
@@ -87,7 +99,7 @@ const MyListing = () => {
                                             <Link to={`/update/${post._id}`} className="btn btn-sm btn-warning text-white">
                                                 <FaEdit /> Update
                                             </Link>
-                                            <button onClick={()=>handleDelete(post._id)} className="btn btn-sm btn-error text-white">
+                                            <button onClick={() => handleDelete(post._id)} className="btn btn-sm btn-error text-white">
                                                 <FaTrash /> Delete
                                             </button>
                                         </td>
@@ -100,7 +112,7 @@ const MyListing = () => {
                     {/* Mobile View */}
                     <div className="md:hidden space-y-4 mx-auto">
                         {posts.map((post, index) => (
-                            <div key={post._id} className="p-4  rounded-lg bg-base-300 shadow-md">
+                            <div key={post._id} className="p-4 rounded-lg bg-base-300 shadow-md">
                                 <p className='font-semibold text-lg line-clamp-1'><span className="font-bold">{index + 1}</span> - {post.title}</p>
                                 <p><span className="font-semibold">Location:</span> {post.location}</p>
                                 <p><span className="font-semibold">Amount:</span> ${post.amount}</p>
@@ -111,10 +123,10 @@ const MyListing = () => {
                                     </span>
                                 </p>
                                 <div className="flex justify-center mt-3 gap-2">
-                                    <Link className="btn btn-sm btn-warning text-white">
+                                    <Link to={`/update/${post._id}`} className="btn btn-sm btn-warning text-white">
                                         <FaEdit /> Update
                                     </Link>
-                                    <button onClick={()=>handleDelete(post._id)} className="btn btn-sm btn-error text-white">
+                                    <button onClick={() => handleDelete(post._id)} className="btn btn-sm btn-error text-white">
                                         <FaTrash /> Delete
                                     </button>
                                 </div>
@@ -122,7 +134,6 @@ const MyListing = () => {
                         ))}
                     </div>
                 </div>
-
             )}
         </div>
     );
