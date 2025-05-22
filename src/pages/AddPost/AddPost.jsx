@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../provider/AuthProvider';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const AddPost = () => {
 
@@ -53,6 +54,7 @@ const AddPost = () => {
 
     return (
         <div className='md:max-w-6xl mx-auto md:my-8'>
+            <Helmet title='Add Find To Roommate - RoomMate Finder'></Helmet>
             <h2 className=" text-xl md:text-3xl font-bold text-center my-6">Post Your Roommate Requirement</h2>
 
 

@@ -3,6 +3,7 @@ import { Link, useLoaderData } from 'react-router';
 import { AuthContext } from '../../provider/AuthProvider';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const MyListing = () => {
     const { user } = useContext(AuthContext);
@@ -62,6 +63,7 @@ const MyListing = () => {
 
     return (
         <div className="max-w-6xl mx-auto px-4 py-8 ">
+            <Helmet title='My Listing- RoomMate Finder'></Helmet>
             <h2 className="text-3xl font-bold mb-6 text-center text-primary">
                 My Posted Roommate Listings
             </h2>

@@ -1,8 +1,10 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const PrivacyPolicy = () => {
   return (
     <section className="px-4 py-12 md:px-10 lg:px-20 bg-base-100 text-base-content">
+      <Helmet title='Privacy and Policy - RoomMate Finder'></Helmet>
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl md:text-4xl font-bold mb-6 text-center">Privacy Policy</h1>
         <p className="mb-6 text-sm text-center opacity-80">

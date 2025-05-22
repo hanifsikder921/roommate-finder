@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../provider/AuthProvider';
+import { Helmet } from 'react-helmet-async';
 
 const UpdatePost = () => {
     const { user } = useContext(AuthContext);
@@ -60,6 +61,7 @@ const UpdatePost = () => {
 
     return (
         <div className='md:max-w-6xl mx-auto md:my-8'>
+            <Helmet title='Update Post - Roommate Finder'></Helmet>
 
             <form onSubmit={handleUpdate}>
                 <div className='bg-base-200 p-2 md:p-8 rounded-md shadow'>

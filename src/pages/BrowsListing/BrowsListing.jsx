@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import PostCard from '../../components/PostCard/PostCard';
 import Lottie from "lottie-react";
 import homeLoading from '../../assets/homeLoading.json'
+import { Helmet } from 'react-helmet-async';
 
 const BrowsListing = () => {
     const [posts, setPosts] = useState([]);
@@ -76,6 +77,7 @@ const BrowsListing = () => {
 
     return (
         <div className="max-w-7xl mx-auto px-4 py-4 md:py-15">
+            <Helmet title='Browse Listing'></Helmet>
             <h2 className="text-3xl font-bold text-center mb-2 text-primary">
                 Discover Your Ideal Roommate Match
             </h2>

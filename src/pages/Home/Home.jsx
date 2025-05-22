@@ -4,6 +4,7 @@ import { useLoaderData } from 'react-router';
 import PostCard from '../../components/PostCard/PostCard';
 import WhyChooseUs from '../../components/ExtraSection/WhyChooseUs';
 import HowItWorks from '../../components/ExtraSection/HowItWorks';
+import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
     const allData = useLoaderData();
@@ -28,6 +29,7 @@ const Home = () => {
 
     return (
         <div className='w-11/12 mx-auto my-8'>
+            <Helmet priority="high"><title> Home - RoomMate Finder</title></Helmet>
             <BannerSlider />
 
             <section className='md:my-20'>
