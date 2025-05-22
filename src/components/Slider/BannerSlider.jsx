@@ -2,6 +2,7 @@ import React from 'react';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import Typewriter from 'typewriter-effect';
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 
 // Import all images
@@ -72,12 +73,24 @@ const BannerSlider = () => {
           <div key={index}>
             <div className="h-[250px] md:h-[500px] w-full overflow-hidden rounded-lg">
               <div
-                className="h-full w-full bg-cover bg-center"
+                className="h-full w-full bg-cover bg-center relative"
                 style={{ backgroundImage: `url(${slide.img})` }}
               >
-                <div className="h-full w-full bg-black opacity-40  flex items-center justify-center text-white text-center px-4">
+                {/* Overlay Layer */}
+                <div className="absolute inset-0 bg-black/40 z-[1]"></div>
+
+                {/* Text Content */}
+                <div className="relative z-[2] h-full w-full flex items-center justify-center text-white text-center px-4">
                   <div>
-                    <h2 className="text-3xl md:text-5xl font-bold mb-4 ">{slide.title}</h2>
+                    <h2 className="text-3xl md:text-5xl font-bold mb-4 ">
+                      <Typewriter
+                        options={{
+                          strings: [`${slide.title}`],
+                          autoStart: true,
+                          loop: true,
+                        }}
+                      />
+                    </h2>
                     <p className="text-lg">{slide.desc}</p>
                   </div>
                 </div>

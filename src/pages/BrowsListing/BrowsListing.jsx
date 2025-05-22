@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import PostCard from '../../components/PostCard/PostCard';
+import Lottie from "lottie-react";
+import homeLoading from '../../assets/homeLoading.json'
+
 
 const BrowsListing = () => {
     const [posts, setPosts] = useState([]);
@@ -54,8 +57,11 @@ const BrowsListing = () => {
 
     if (loading) {
         return (
+
             <div className="flex justify-center items-center h-screen">
-                <span className="loading loading-spinner text-primary text-2xl"></span>
+                <div className='w-[100px] h-[100px]'>
+                    <Lottie animationData={homeLoading} />
+                </div>
             </div>
         );
     }
@@ -105,7 +111,7 @@ const BrowsListing = () => {
                     <PostCard key={post._id} post={post} />
                 ))}
 
-                
+
             </div>
 
 
