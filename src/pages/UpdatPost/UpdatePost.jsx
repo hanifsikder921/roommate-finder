@@ -94,10 +94,10 @@ const UpdatePost = () => {
 
 
                             <label className="label">User Name</label>
-                            <input required name='userName' type="text" className="input w-full focus:border-none mb-2 focus:outline-1" value={user.displayName} readOnly />
+                            <input required name='userName' type="text" className="input w-full focus:border-none mb-2 focus:outline-1 cursor-not-allowed" value={user.displayName} readOnly />
 
                             <label className="label">Email</label>
-                            <input required name='userEmail' type="email" className="input w-full focus:border-none mb-2 focus:outline-1" value={user.email} readOnly />
+                            <input required name='userEmail' type="email" className="input w-full focus:border-none mb-2 focus:outline-1 cursor-not-allowed" value={user.email} readOnly />
 
                             <label className="label">Availability </label>
 

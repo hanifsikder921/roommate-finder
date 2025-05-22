@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData, useNavigate } from 'react-router';
 import { AuthContext } from '../../provider/AuthProvider';
-import {FaMapMarkerAlt, FaHome, FaDollarSign, FaUser,FaEnvelope, FaPhone, FaAlignLeft, FaHeart} from 'react-icons/fa';
+import { FaMapMarkerAlt, FaHome, FaDollarSign, FaUser, FaEnvelope, FaPhone, FaAlignLeft, FaHeart } from 'react-icons/fa';
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import { MdOutlineEventAvailable } from "react-icons/md";
 import { FcViewDetails } from "react-icons/fc";
@@ -9,19 +9,27 @@ import Swal from 'sweetalert2';
 import Loading from '../../components/Loading/Loading';
 
 const PostDetails = () => {
-    const post = useLoaderData();
+    const allPost = useLoaderData();
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const [likeCount, setLikeCount] = useState(0);
     const [hasLiked, setHasLiked] = useState(false);
     const [showContact, setShowContact] = useState(false);
+    const [loading, setLoading] = useState(true);
+     const [post, setPost] = useState(null);
 
     useEffect(() => {
         if (!user) {
             navigate('/login');
+            return;
         }
-    }, [user, navigate]);
+
+        if (allPost) {
+            setPost(allPost);
+            setLoading(false);
+        }
+    }, [user, navigate, allPost]);
 
     const handleLike = () => {
         if (user?.email === post.userEmail) {
@@ -49,7 +57,7 @@ const PostDetails = () => {
         setShowContact(true);
     };
 
-    if (!post) {
+    if (loading || !post) {
         return <Loading />;
     }
 
@@ -101,9 +109,9 @@ const PostDetails = () => {
             <div className='my-6'>
 
             </div>
-                {showContact && (
-                    <span className="flex items-center gap-2 border w-5/6 md:w-[30%] p-2 rounded-md"><FaPhone className="text-orange-500" /> <span className="font-semibold">Contact:</span> {post.contactInfo}</span>
-                )}
+            {showContact && (
+                <span className="flex items-center gap-2 border w-5/6 md:w-[30%] p-2 rounded-md"><FaPhone className="text-orange-500" /> <span className="font-semibold">Contact:</span> {post.contactInfo}</span>
+            )}
         </div>
     );
 };

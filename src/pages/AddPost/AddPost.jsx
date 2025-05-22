@@ -53,9 +53,11 @@ const AddPost = () => {
 
     return (
         <div className='md:max-w-6xl mx-auto md:my-8'>
+            <h2 className=" text-xl md:text-3xl font-bold text-center my-6">Post Your Roommate Requirement</h2>
+
 
             <form onSubmit={handleAddPost}>
-                <div className='bg-base-200 p-2 md:p-8 rounded-md shadow'>
+                <div className='bg-base-200 p-2 md:p-8 rounded-md shadow px-4'>
 
                     <div className='grid grid-cols-1 md:grid-cols-2 md:gap-8'>
 
@@ -92,10 +94,10 @@ const AddPost = () => {
 
 
                             <label className="label">User Name</label>
-                            <input required name='userName' type="text" className="input w-full focus:border-none mb-2 focus:outline-1" value={user.displayName} readOnly />
+                            <input required name='userName' type="text" className="input w-full focus:border-none mb-2 focus:outline-1 cursor-not-allowed" value={user.displayName} readOnly />
 
                             <label className="label">Email</label>
-                            <input required name='userEmail' type="email" className="input w-full focus:border-none mb-2 focus:outline-1" value={user.email} readOnly />
+                            <input required name='userEmail' type="email" className="input w-full focus:border-none mb-2 focus:outline-1 cursor-not-allowed" value={user.email} readOnly />
 
                             <label className="label">Availability </label>
 

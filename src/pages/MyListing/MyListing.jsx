@@ -9,7 +9,7 @@ const MyListing = () => {
     const allPost = useLoaderData();
 
     const [posts, setPost] = useState([]);
-    const [loading, setLoading] = useState(true); 
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (allPost && user?.email) {
@@ -50,19 +50,22 @@ const MyListing = () => {
         });
     };
 
-    // ✅ লোডিং স্পিনার দেখাও
+    
     if (loading) {
         return (
             <div className="flex justify-center items-center h-screen">
                 <span className="loading loading-spinner text-primary text-2xl"></span>
-               
+
             </div>
         );
     }
 
     return (
         <div className="max-w-6xl mx-auto px-4 py-8 ">
-            <h2 className="text-3xl font-bold mb-6 text-center text-primary">My Listings</h2>
+            <h2 className="text-3xl font-bold mb-6 text-center text-primary">
+                My Posted Roommate Listings
+            </h2>
+
 
             {posts.length === 0 ? (
                 <p className="text-center text-gray-500">You have not added any posts yet.</p>
@@ -90,16 +93,16 @@ const MyListing = () => {
                                         <td>${post.amount}</td>
                                         <td>
                                             <span
-                                                className={`badge ${post.availability === 'available' ? 'badge-success' : 'badge-error'} text-white`}
+                                                className={`badge ${post.availability === 'available' ? 'badge-success' : 'badge-error'} `}
                                             >
                                                 {post.availability}
                                             </span>
                                         </td>
                                         <td className="space-x-2 text-center">
-                                            <Link to={`/update/${post._id}`} className="btn btn-sm btn-warning text-white">
+                                            <Link to={`/update/${post._id}`} className="btn btn-sm btn-warning ">
                                                 <FaEdit /> Update
                                             </Link>
-                                            <button onClick={() => handleDelete(post._id)} className="btn btn-sm btn-error text-white">
+                                            <button onClick={() => handleDelete(post._id)} className="btn btn-sm btn-error ">
                                                 <FaTrash /> Delete
                                             </button>
                                         </td>
@@ -118,15 +121,15 @@ const MyListing = () => {
                                 <p><span className="font-semibold">Amount:</span> ${post.amount}</p>
                                 <p>
                                     <span className="font-semibold">Availability:</span>{' '}
-                                    <span className={`badge ${post.availability === 'available' ? 'badge-success' : 'badge-error'} text-white`}>
+                                    <span className={`badge ${post.availability === 'available' ? 'badge-success' : 'badge-error'} `}>
                                         {post.availability}
                                     </span>
                                 </p>
                                 <div className="flex justify-center mt-3 gap-2">
-                                    <Link to={`/update/${post._id}`} className="btn btn-sm btn-warning text-white">
+                                    <Link to={`/update/${post._id}`} className="btn btn-sm btn-warning ">
                                         <FaEdit /> Update
                                     </Link>
-                                    <button onClick={() => handleDelete(post._id)} className="btn btn-sm btn-error text-white">
+                                    <button onClick={() => handleDelete(post._id)} className="btn btn-sm btn-error ">
                                         <FaTrash /> Delete
                                     </button>
                                 </div>
