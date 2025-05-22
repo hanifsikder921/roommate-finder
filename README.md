@@ -9,11 +9,13 @@ Roommate Finder is a modern web application that helps users discover, connect, 
 
 ## 🚀 Features
 
-- 🔍 **Verified Listings** — Discover trustworthy roommate listings with ease.
-- 💬 **Secure Chat System** — Contact other users securely through built-in messaging.
-- 🌓 **Dark & Light Mode** — Toggle between themes with persistent user preferences.
-- 📱 **Mobile-Friendly UI** — Fully responsive layout across all devices.
-- ✅ **Authentication System** — Sign up and sign in with Firebase Authentication.
+- 🔍 **Verified Listings** — বিশ্বাসযোগ্য রুমমেট পোস্ট সহজেই খুঁজুন
+- 💬 **Secure Chat System** — সুরক্ষিতভাবে চ্যাট করুন অন্যান্য ইউজারদের সাথে
+- 🌓 **Dark & Light Mode** — থিম পরিবর্তনের সুবিধা (ইউজার প্রেফারেন্স সেভ হয়)
+- 📱 **Mobile-Friendly UI** — সব ডিভাইসে সুন্দরভাবে দেখা যায়
+- ✅ **Firebase Authentication** — নিরাপদ লগইন ও রেজিস্ট্রেশন
+- ❤️ **Like System** — পছন্দের পোস্টে লাইক দিন (মালিক নিজে লাইক করতে পারবে না)
+- 📌 **Tooltips & Feedback** — ব্যবহারকারীর বুঝতে সুবিধা হয় এমন টুলটিপ ও এলার্ট
 
 ---
 
@@ -23,10 +25,15 @@ Roommate Finder is a modern web application that helps users discover, connect, 
 - **Styling:** Tailwind CSS 4 + DaisyUI 5
 - **Routing:** React Router 7
 - **Icons:** React Icons
+- **Animation:** Lottie React
 - **Slider:** react-slick + slick-carousel
-- **UI Enhancements:** SweetAlert2, react-spinners
+- **UI Enhancements:** 
+  - SweetAlert2 (Alert system)
+  - react-tooltip (Tooltips)
+  - react-spinners (Loading indicators)
+  - typewriter-effect (Typing effect)
 - **Authentication & Hosting:** Firebase
-- **Environment Config:** dotenv
+- **Environment Configuration:** dotenv
 
 ---
 
