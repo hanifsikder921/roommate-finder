@@ -3,31 +3,26 @@ import { Outlet } from 'react-router';
 import Navbar from '../components/Header/Navbar';
 import Footer from './../components/Footer/Footer';
 
-
-
 const MainLayout = () => {
     return (
-        <div>
+        <div className="min-h-screen flex flex-col">
 
-            <header className='border-b border-base-300 '>
-                <Navbar></Navbar>
+      
+            <header className='border-b border-base-300'>
+                <Navbar />
             </header>
 
-
-            <main>
-
-                {/* Dynamic Change Element */}
-                <section>
-                    <Outlet></Outlet>
+           
+            <main className="flex-grow">
+                <section className="px-4 py-6">
+                    <Outlet />
                 </section>
-
             </main>
 
-
-            <Footer></Footer>
-
-
-
+          
+            <footer className='border-t border-base-300'>
+                <Footer />
+            </footer>
 
         </div>
     );
