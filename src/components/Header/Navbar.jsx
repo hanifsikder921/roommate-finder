@@ -61,7 +61,6 @@ const Navbar = () => {
                 </NavLink>
             ))}
 
-            {/* Button: Hidden on md and up, visible on small screens */}
 
             {
                 user ? (

@@ -15,6 +15,7 @@ import UpdatePost from "../pages/UpdatPost/UpdatePost";
 import PrivacyPolicy from './../pages/Privacy/PrivacyPolicy';
 import Error from "../pages/NotFound/Error";
 import Terms from './../pages/TermsAnd Condition/Terms';
+import PublicRoute from "../provider/PublicRoute";
 
 
 
@@ -113,11 +114,11 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/auth/login",
-                Component: Login
+                Component: ()=> <PublicRoute><Login/></PublicRoute>
             },
             {
                 path: "/auth/register",
-                Component: Register
+                Component: ()=> <PublicRoute><Register/></PublicRoute>
             }
         ]
     },

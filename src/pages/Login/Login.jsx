@@ -33,10 +33,11 @@ const Login = () => {
     };
 
     const handleGoogleSignin = () => {
+        const from = location.state?.from?.pathname || "/";  
+
         googleSignin()
             .then((result) => {
                 const loggedInUser = result.user;
-
 
                 const updatedUser = {
                     displayName: loggedInUser.displayName || '',
@@ -45,13 +46,16 @@ const Login = () => {
                 };
 
                 setUser(updatedUser);
-                Swal.fire("Success", "Successfully Logged In With Google", "success");
-                navigate("/");
+
+                Swal.fire("Success", "Successfully Logged In With Google", "success").then(() => {
+                    navigate(from, { replace: true }); 
+                });
             })
             .catch((error) => {
                 Swal.fire("Error", error.message, "error");
             });
     };
+
 
 
     const handleForgotPassword = () => {
@@ -128,7 +132,7 @@ const Login = () => {
                     </svg>
                     Login with Google
                 </button>
-                
+
             </div>
         </div>
 
