@@ -79,8 +79,12 @@ const UpdatePost = () => {
                             <label className="label">Room Type</label>
                             <select name='type' defaultValue="Single" className="select w-full focus:border-none mb-2 focus:outline-1">
                                 <option disabled value="">Select Type</option>
-                                <option value="Single">Single</option>
+                                 <option value="Single">Single</option>
                                 <option value="Shared">Shared</option>
+                                <option value="Master Bedroom">Master Bedroom</option>
+                                <option value="Studio">Studio</option>
+                                <option value="Sublet">Sublet</option>
+                                <option value="Paying Guest (PG)">Paying Guest (PG)</option>
 
 
                             </select>
