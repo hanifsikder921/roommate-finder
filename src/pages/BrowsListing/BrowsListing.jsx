@@ -4,12 +4,12 @@ import PostCard from '../../components/PostCard/PostCard';
 import Lottie from "lottie-react";
 import homeLoading from '../../assets/homeLoading.json'
 
-
 const BrowsListing = () => {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [filterType, setFilterType] = useState('');
+    const [searchTerm, setSearchTerm] = useState('');
     const postsPerPage = 10;
 
     useEffect(() => {
@@ -32,12 +32,22 @@ const BrowsListing = () => {
 
     const handleClearFilter = () => {
         setFilterType('');
+        setSearchTerm('');
         setCurrentPage(1);
     };
 
-    const filteredPosts = filterType
-        ? posts.filter(post => post.type === filterType)
-        : posts;
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+        setCurrentPage(1);
+    };
+
+    const filteredPosts = posts.filter(post => {
+        const matchesType = filterType ? post.type === filterType : true;
+        const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            post.location.toLowerCase().includes(searchTerm.toLowerCase());
+
+        return matchesType && matchesSearch;
+    });
 
     const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
     const startIndex = (currentPage - 1) * postsPerPage;
@@ -48,7 +58,6 @@ const BrowsListing = () => {
             setCurrentPage(prev => prev + 1);
         }
     };
-
     const handlePreviousPage = () => {
         if (currentPage > 1) {
             setCurrentPage(prev => prev - 1);
@@ -57,7 +66,6 @@ const BrowsListing = () => {
 
     if (loading) {
         return (
-
             <div className="flex justify-center items-center h-screen">
                 <div className='w-[100px] h-[100px]'>
                     <Lottie animationData={homeLoading} />
@@ -81,6 +89,22 @@ const BrowsListing = () => {
                     Total <span className='font-bold text-blue-500'>{filteredPosts.length}</span> Post Found
                 </p>
 
+                <label className="input focus-within:ring-1 focus-within:outline-none focus-within:border-none">
+                    <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2.5" fill="none" stroke="currentColor">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.3-4.3"></path>
+                        </g>
+                    </svg>
+                    <input
+                        type="search"
+                        value={searchTerm}
+                        onChange={handleSearchChange}
+                        placeholder="Search by title or location"
+                        className="focus:outline-none focus:ring-0 focus:border-transparent border-none"
+                    />
+                </label>
+
                 <div className="flex gap-2 items-center">
                     <select
                         value={filterType}
@@ -96,26 +120,22 @@ const BrowsListing = () => {
                         <option value="Paying Guest (PG)">Paying Guest (PG)</option>
                     </select>
 
-                    {filterType && (
+                    {(filterType || searchTerm) && (
                         <button onClick={handleClearFilter} className="btn btn-sm btn-error text-white">
                             Clear Filter
                         </button>
                     )}
                 </div>
-
             </div>
 
-            {/* Small device design */}
+            {/* Small device cards */}
             <div className="block md:hidden space-y-6">
                 {currentPosts.map(post => (
                     <PostCard key={post._id} post={post} />
                 ))}
-
-
             </div>
 
-
-            {/* Large device design */}
+            {/* Large device table */}
             <div className="hidden md:block overflow-x-auto">
                 <table className="table w-full">
                     <thead className='bg-base-300'>
@@ -157,7 +177,6 @@ const BrowsListing = () => {
                 </p>
             )}
 
-            {/* Pagination Controls */}
             <div className="join grid grid-cols-2 my-4">
                 <button
                     onClick={handlePreviousPage}

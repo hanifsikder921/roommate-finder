@@ -1,19 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router';
+import errorAnimation from '../../assets/errorAnimation.json'
+import Lottie from 'lottie-react';
 
 const Error = () => {
     return (
         <div>
-           
+
             <main className="grid min-h-screen place-items-center px-6 py-24 sm:py-32 lg:px-8">
                 <div className="text-center">
-                    <p className="text-base font-semibold">404</p>
-                    <h1 className="mt-4 text-5xl font-bold tracking-tight  sm:text-6xl">
-                        Page Not Found
-                    </h1>
-                    <p className="mt-6 text-lg text-gray-600 dark:text-gray-400">
-                        Sorry, we couldn’t find the page you’re looking for.
-                    </p>
+
+
+                    <div className='w-1/2 mx-auto'>
+
+                        <Lottie animationData={errorAnimation}> </Lottie>
+                    </div>
+
                     <div className="mt-10 flex items-center justify-center gap-4 flex-wrap">
                         <Link
                             to="/"

@@ -1,12 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useLoaderData, useNavigate } from 'react-router';
+import { Link, useLoaderData, useNavigate } from 'react-router';
 import { AuthContext } from '../../provider/AuthProvider';
 import { FaMapMarkerAlt, FaHome, FaDollarSign, FaUser, FaEnvelope, FaPhone, FaAlignLeft, FaHeart } from 'react-icons/fa';
-import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import { MdOutlineEventAvailable } from "react-icons/md";
 import { FcViewDetails } from "react-icons/fc";
 import Swal from 'sweetalert2';
 import Loading from '../../components/Loading/Loading';
+import chatAnimation from '../../assets/chatAnimation.json'
+import Lottie from 'lottie-react';
+import { CiEdit } from "react-icons/ci";
+import { Tooltip } from 'react-tooltip';
 
 const PostDetails = () => {
     const allPost = useLoaderData();
@@ -17,7 +20,7 @@ const PostDetails = () => {
     const [hasLiked, setHasLiked] = useState(false);
     const [showContact, setShowContact] = useState(false);
     const [loading, setLoading] = useState(true);
-     const [post, setPost] = useState(null);
+    const [post, setPost] = useState(null);
 
     useEffect(() => {
         if (!user) {
@@ -63,7 +66,22 @@ const PostDetails = () => {
 
     return (
         <div className="max-w-5xl mx-auto bg-white dark:bg-base-200 p-8 rounded-2xl shadow-lg my-4 md:my-15 border border-gray-200">
-            <h2 className="text-4xl font-bold text-left mb-4 text-primary">{post.title}</h2>
+            <div className='flex items-center justify-between'>
+                <h2 className="text-4xl font-bold text-left mb-4 text-primary">{post.title}</h2>
+                {user.email === post.userEmail ? (
+                    <Link to={`/update/${post._id}`}>
+                        <CiEdit size={25} className="text-blue-500 hover:text-blue-700" />
+                    </Link>
+                ) : (
+                    <div>
+                        <CiEdit size={25} className="my-anchor-element hover:text-gray-400 cursor-not-allowed" />
+                        <Tooltip anchorSelect=".my-anchor-element" place="top">
+                            Only the owner can edit this
+                        </Tooltip>
+                    </div>
+                )}
+            </div>
+
 
             <p className="text-lg font-semibold mb-6 text-gray-600">
                 {likeCount} people interested in
@@ -102,7 +120,7 @@ const PostDetails = () => {
                 </button>
 
                 <button className="btn btn-success text-white text-lg px-8 py-2 flex items-center gap-2">
-                    <IoChatboxEllipsesOutline /> Chat
+                    <Lottie className='w-8' animationData={chatAnimation} /> Chat
                 </button>
             </div>
 
