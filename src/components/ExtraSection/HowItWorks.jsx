@@ -16,7 +16,7 @@ const steps = [
   {
     icon: <FaHandshake className="text-3xl text-primary" />,
     title: "Fix a Meetup",
-    description: "Meet in person and finalize your decision.",
+    description: "Meet in person and finalize your decision full safety.",
   },
   {
     icon: <FaCheckCircle className="text-3xl text-primary" />,

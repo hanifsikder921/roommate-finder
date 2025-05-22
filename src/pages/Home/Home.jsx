@@ -8,7 +8,7 @@ import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
     const allData = useLoaderData();
-    const [loading, setLoading] = useState(true); // ✅ লোডিং স্টেট
+    const [loading, setLoading] = useState(true); 
     const [availablePosts, setAvailablePosts] = useState([]);
 
     useEffect(() => {

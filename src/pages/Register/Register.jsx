@@ -34,8 +34,7 @@ const Register = () => {
 
         createUser(email, password)
             .then((result) => {
-                console.log(result.user);
-
+               
                 const currentUser = result.user;
                 return updateDetails(currentUser, {
                     displayName: name,

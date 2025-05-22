@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet-async';
 const AddPost = () => {
 
     const { user } = useContext(AuthContext);
-    console.log(user);
+    
 
 
 

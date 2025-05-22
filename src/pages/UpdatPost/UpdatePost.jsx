@@ -19,8 +19,6 @@ const UpdatePost = () => {
         const formData = new FormData(form);
         const updatePost = Object.fromEntries(formData.entries())
 
-        //send Update post to db
-
         fetch(`https://roommate-finder-server-site.vercel.app/items/${_id}`, {
 
 
