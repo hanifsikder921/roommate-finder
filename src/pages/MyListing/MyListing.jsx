@@ -69,7 +69,12 @@ const MyListing = () => {
 
 
             {posts.length === 0 ? (
-                <p className="text-center text-gray-500">You have not added any posts yet.</p>
+                <div className='flex items-center flex-col gap-3'>
+                    <p className="text-center ">You have not added any posts yet.</p>
+                    <Link to='/addPost'>
+                        <button className='btn btn-primary'>Add New Post</button>
+                    </Link>
+                </div>
             ) : (
                 <div className="overflow-x-auto">
                     {/* Desktop View */}
