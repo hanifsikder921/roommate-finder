@@ -20,7 +20,7 @@ const MainLayout = () => {
             </main>
 
           
-            <footer className='border-t border-base-300'>
+            <footer >
                 <Footer />
             </footer>
 

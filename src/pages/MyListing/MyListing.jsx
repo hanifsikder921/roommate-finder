@@ -67,6 +67,10 @@ const MyListing = () => {
                 My Posted Roommate Listings
             </h2>
 
+            <Link to='/addPost'>
+                <button className='btn btn-primary my-2'>Add New</button>
+            </Link>
+
 
             {posts.length === 0 ? (
                 <div className='flex items-center flex-col gap-3'>
