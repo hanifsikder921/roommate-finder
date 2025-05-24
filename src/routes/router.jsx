@@ -57,7 +57,7 @@ const router = createBrowserRouter([
                         return res.json();
                     } catch (err) {
                         console.error(err.message);
-                        return null; // বা fallback ডেটা
+                        return null; 
                     }
                 },
                 Component: () => <PrivateRoute><PostDetails /></PrivateRoute>
