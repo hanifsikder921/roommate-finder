@@ -6,7 +6,7 @@ import { MdOutlineEventAvailable } from "react-icons/md";
 import { FcViewDetails } from "react-icons/fc";
 import Swal from 'sweetalert2';
 import Loading from '../../components/Loading/Loading';
-import chatAnimation from '../../assets/chatAnimation.json'
+import chatAnimation from '../../assets/chatAnimation.json';
 import Lottie from 'lottie-react';
 import { CiEdit } from "react-icons/ci";
 import { Tooltip } from 'react-tooltip';
@@ -17,7 +17,6 @@ const PostDetails = () => {
     const navigate = useNavigate();
 
     const [likeCount, setLikeCount] = useState(0);
-    const [hasLiked, setHasLiked] = useState(false);
     const [showContact, setShowContact] = useState(false);
     const [loading, setLoading] = useState(true);
     const [post, setPost] = useState(null);
@@ -45,19 +44,12 @@ const PostDetails = () => {
             return;
         }
 
-        if (hasLiked) {
-            Swal.fire({
-                icon: 'info',
-                title: "You've already liked this post.",
-                timer: 1500,
-                showConfirmButton: false
-            });
-            return;
-        }
-
-        setHasLiked(true);
         setLikeCount(prev => prev + 1);
-        setShowContact(true);
+
+    
+        if (!showContact) {
+            setShowContact(true);
+        }
     };
 
     if (loading || !post) {
@@ -82,7 +74,6 @@ const PostDetails = () => {
                 )}
             </div>
 
-
             <p className="text-lg font-semibold mb-6 text-gray-600">
                 {likeCount} people interested in
             </p>
@@ -101,7 +92,6 @@ const PostDetails = () => {
                 <div className="space-y-4">
                     <p className="flex items-center gap-2"><FaUser className="text-pink-500" /> <span className="font-semibold">Posted by:</span> {post.userName}</p>
                     <p className="flex items-center gap-2"><FaEnvelope className="text-indigo-500" /> <span className="font-semibold">Email:</span> {post.userEmail}</p>
-
                     <p className="flex items-center gap-2"><FaAlignLeft className="text-purple-500" /> <span className="font-semibold">Lifestyle:</span> {post.lifestyle}</p>
                 </div>
             </div>
@@ -114,9 +104,9 @@ const PostDetails = () => {
             <div className="flex gap-4 items-center md:justify-between md:w-[30%]">
                 <button
                     onClick={handleLike}
-                    className={`btn text-lg px-8 py-2 flex items-center gap-2 ${hasLiked ? 'btn-outline btn-error' : 'btn-secondary'}`}
+                    className="btn btn-secondary text-lg px-8 py-2 flex items-center gap-2"
                 >
-                    <FaHeart /> {hasLiked ? 'Liked' : 'Like'}
+                    <FaHeart /> Like
                 </button>
 
                 <button className="btn btn-success text-white text-lg px-8 py-2 flex items-center gap-2">
@@ -124,11 +114,13 @@ const PostDetails = () => {
                 </button>
             </div>
 
-            <div className='my-6'>
+            <div className='my-6'></div>
 
-            </div>
             {showContact && (
-                <span className="flex items-center gap-2 border w-5/6 md:w-[30%] p-2 rounded-md"><FaPhone className="text-orange-500" /> <span className="font-semibold">Contact:</span> {post.contactInfo}</span>
+                <span className="flex items-center gap-2 border w-5/6 md:w-[30%] p-2 rounded-md">
+                    <FaPhone className="text-orange-500" /> 
+                    <span className="font-semibold">Contact:</span> {post.contactInfo}
+                </span>
             )}
         </div>
     );
