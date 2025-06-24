@@ -1,7 +1,7 @@
 
 # 🏠 Roommate Finder Web App
 
-**🔗 Live Website:** [https://assignment-m-8.netlify.app](https://assignment-m-8.netlify.app)
+**🔗 Live Website:** [https://roommate-finder-b1db3.web.app/](https://roommate-finder-b1db3.web.app/)
 
 ---
 
