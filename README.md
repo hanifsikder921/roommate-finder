@@ -1,78 +1,87 @@
-# 🏠 Roommate Finder
 
-Roommate Finder is a modern web application that helps users discover, connect, and live with trusted roommates. Built using React and Vite, it offers a sleek UI, responsive design, and secure authentication powered by Firebase.
+# 🏠 Roommate Finder Web App
 
-🌐 **Live Site URL:**  
-👉 [https://roommate-finder-b1db3.web.app/](https://roommate-finder-b1db3.web.app/)
+**🔗 Live Website:** [https://roommate-finder-b1db3.web.app/](https://roommate-finder-b1db3.web.app/)
 
 ---
 
-## 🚀 Features
+## 📌 Project Overview
 
-- 🔍 **Verified Listings** — বিশ্বাসযোগ্য রুমমেট পোস্ট সহজেই খুঁজুন
-- 💬 **Secure Chat System** — সুরক্ষিতভাবে চ্যাট করুন অন্যান্য ইউজারদের সাথে
-- 🌓 **Dark & Light Mode** — থিম পরিবর্তনের সুবিধা (ইউজার প্রেফারেন্স সেভ হয়)
-- 📱 **Mobile-Friendly UI** — সব ডিভাইসে সুন্দরভাবে দেখা যায়
-- ✅ **Firebase Authentication** — নিরাপদ লগইন ও রেজিস্ট্রেশন
-- ❤️ **Like System** — পছন্দের পোস্টে লাইক দিন (মালিক নিজে লাইক করতে পারবে না)
-- 📌 **Tooltips & Feedback** — ব্যবহারকারীর বুঝতে সুবিধা হয় এমন টুলটিপ ও এলার্ট
+Roommate Finder is a responsive web application designed to help users easily search for compatible roommates.  
+Users can create a profile, filter roommate listings based on location and preferences, and connect with potential matches.  
+The app features a modern UI built with Tailwind CSS and is optimized for all devices.
 
 ---
 
-## 🛠️ Tech Stack
+## 💻 Tech Stack
 
-- **Frontend:** React 19 + Vite
-- **Styling:** Tailwind CSS 4 + DaisyUI 5
-- **Routing:** React Router 7
-- **Icons:** React Icons
-- **Animation:** Lottie React
-- **Slider:** react-slick + slick-carousel
-- **UI Enhancements:** 
-  - SweetAlert2 (Alert system)
-  - react-tooltip (Tooltips)
-  - react-spinners (Loading indicators)
-  - typewriter-effect (Typing effect)
-- **Authentication & Hosting:** Firebase
-- **Environment Configuration:** dotenv
+- **Frontend:** React.js, Tailwind CSS  
+- **Backend (Optional):** Node.js, Express.js  
+- **Database (Optional):** MongoDB  
+- **Authentication (Optional):** Firebase / JWT  
+- **Deployment:** Netlify
 
 ---
 
-## 📁 Folder Structure
+## ✨ Features
 
-src/
-├── assets/ # Static images and icons
-├── components/ # Reusable UI components
-├── pages/ # Route-based pages
-├── routes/ # Protected & public routes
-├── hooks/ # Custom React hooks
-└── App.jsx # Main app setup
-
-
+- ✅ User profile creation and management  
+- ✅ Location-based roommate search  
+- ✅ Modern responsive UI with Tailwind CSS  
+- ✅ (Optional) Authentication with Firebase or JWT  
+- ✅ (Optional) MongoDB integration for data storage  
 
 ---
 
-## 📦 Setup Instructions
 
-1. **Clone this repository**
-2. `npm install` — Install dependencies
-3. Create `.env` file with Firebase config
-4. `npm run dev` — Start development server
-5. `npm run build` — Build for production
+## 🛠️ How to Run Locally
+
+### 1. Clone the repository:
+```bash
+git clone https://github.com/hanifsikder921/roommate-finder.git
+```
+
+### 2. Navigate to the project directory:
+```bash
+cd roommate-finder
+```
+
+### 3. Install the dependencies:
+```bash
+npm install
+```
+
+### 4. (If using Tailwind manually):
+```bash
+npx tailwindcss -i ./src/input.css -o ./src/output.css --watch
+```
+
+### 5. Run the development server:
+```bash
+npm run dev
+```
+
+### 6. Visit in your browser:
+```bash
+http://localhost:5173
+```
 
 ---
 
-## 👤 Author
+## 🔗 Relevant Links
 
-**Hanif Sikder**  
-Frontend Developer | Firebase Enthusiast  
-🛠️ Building smart, minimal web apps with React + Tailwind
+- 🌍 **Live Website:** [https://assignment-m-8.netlify.app](https://assignment-m-8.netlify.app)  
+- 📂 **GitHub Repository:** [https://github.com/hanifsikder921/roommate-finder](https://github.com/hanifsikder921/roommate-finder)  
+- 🧑‍💻 **Portfolio:** [https://hanifsikder.com](https://hanifsikder.com)
 
 ---
 
-## 📜 License
+## 🙌 Author
 
-This project is licensed under the **MIT License**.  
-Feel free to use and contribute!
+**Md Hanif Sikder**  
+📫 Email: mdhanifsikderpersonal@gmail.com  
+🔗 LinkedIn: [https://linkedin.com/in/hanifsikder920](https://linkedin.com/in/hanifsikder920)
 
+---
 
-
+> 📝 *Feel free to fork this project, raise issues, or suggest improvements.*
