@@ -16,6 +16,7 @@ import PrivacyPolicy from './../pages/Privacy/PrivacyPolicy';
 import Error from "../pages/NotFound/Error";
 import Terms from './../pages/TermsAnd Condition/Terms';
 import PublicRoute from "../provider/PublicRoute";
+import Support from "../pages/Support/Support";
 
 
 
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
             {
                 path: '/about',
                 Component: About
+            },
+            {
+                path: '/support',
+                Component: Support
             },
             {
                 path: '/contact',

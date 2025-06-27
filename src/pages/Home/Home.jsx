@@ -5,6 +5,7 @@ import PostCard from '../../components/PostCard/PostCard';
 import WhyChooseUs from '../../components/ExtraSection/WhyChooseUs';
 import HowItWorks from '../../components/ExtraSection/HowItWorks';
 import { Helmet } from 'react-helmet-async';
+import Newsletter from '../../components/ExtraSection/Newsletter';
 
 const Home = () => {
     const allData = useLoaderData();
@@ -46,6 +47,9 @@ const Home = () => {
 
             <section className='bg-base-300 my-16 rounded-lg shadow'>
                 <HowItWorks />
+            </section>
+            <section className='bg-base-300 my-16 rounded-lg shadow'>
+                <Newsletter/>
             </section>
 
             <section className='bg-base-300 mb-16 rounded-lg shadow'>

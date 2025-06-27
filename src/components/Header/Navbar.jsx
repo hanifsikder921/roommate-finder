@@ -43,9 +43,12 @@ const Navbar = () => {
         <div className="flex flex-col md:flex-row md:gap-10 gap-3 md:items-center">
             {[
                 { path: "/", label: "Home" },
-                { path: "/addPost", label: "Add to Find Roommate" },
                 { path: "/browsePost", label: "Browse Listing" },
-                { path: "/myListing", label: "My Listing" },
+                ...(user ? [{ path: "/myListing", label: "My Listing" }] : []),
+                ...(user ? [{ path: "/addPost", label: "Add to Find Roommate" }] : []),
+                { path: "/about", label: "About" },
+                { path: "/support", label: "Support" },
+                
             ].map(({ path, label }) => (
                 <NavLink
                     key={path}
@@ -60,6 +63,7 @@ const Navbar = () => {
                     {label}
                 </NavLink>
             ))}
+
 
 
             {
